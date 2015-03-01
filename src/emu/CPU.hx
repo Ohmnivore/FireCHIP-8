@@ -357,8 +357,7 @@ class CPU
 			}
 		}
 		
-		//default
-		else
+		else if (Opcode & 0xF000 == 0x0000)
 		{
 			reg.incrementPC();
 		}

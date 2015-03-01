@@ -44,10 +44,10 @@ class Main extends Sprite
 		
 		//Games
 		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Airplane.ch8"));
-		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Pong [Paul Vervalin, 1990].ch8"));
+		chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Pong [Paul Vervalin, 1990].ch8"));
 		
 		//Non-tested or non-working demos and programs
-		chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Demos/Stars [Sergey Naydenov, 2010].ch8"));
+		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Demos/Stars [Sergey Naydenov, 2010].ch8"));
 		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Programs/Division Test [Sergey Naydenov, 2010].ch8"));
 		
 		//Working demos and programs
