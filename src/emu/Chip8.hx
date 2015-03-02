@@ -11,19 +11,19 @@ class Chip8
 {
 	private static inline var CYCLE_PER_SEC:Float = 60.0;
 	
-	public var doRun:Bool = false;
 	public var cpu:CPU;
 	public var mem:Memory;
 	public var gfx:Gfx;
 	public var keys:Keys;
 	
 	private var timer:Timer;
+	private var dt:Int = 0;
 	
 	public var onDraw:Void->Void;
 	
 	public function new() 
 	{
-		init();
+		init(true);
 	}
 	
 	private function init(AutoRun:Bool = false):Void
@@ -32,7 +32,6 @@ class Chip8
 		gfx = new Gfx();
 		keys = new Keys();
 		cpu = new CPU(mem, gfx, keys);
-		trace("Initialized.");
 		
 		if (AutoRun)
 		{
@@ -48,20 +47,25 @@ class Chip8
 		mem.init();
 		
 		mem.loadGame(Game);
-		doRun = true;
-		trace("Game loaded.");
 	}
 	
 	public function run():Void
 	{
-		if (doRun)
+		dt += Util.getMsElapsed();
+		var max:Int = Math.floor(dt / 2);
+		if (max > 20)
+			max = 20;
+		var i:Int = 0;
+		while (i < max)
 		{
 			cpu.runCycle();
-			
 			if (onDraw != null && cpu.drawFlag)
 			{
 				onDraw();
 			}
+			i++;
 		}
+		
+		dt = dt % 2;
 	}
 }

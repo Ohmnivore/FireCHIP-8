@@ -8,9 +8,10 @@
 	<!-- output -->
 	<app main="Main" file="FireCHIP8" path="bin" />
 	
-	<window background="#073642" fps="60" />
-	<window width="640" height="480" unless="mobile" />
-	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
+	<window background="#073642" fps="30" />
+	<window width="320" height="160" if="release" />
+	<window width="640" height="480" if="debug" />
+	<window orientation="landscape" vsync="false" antialiasing="0" />
 	
 	<!-- classpath, haxe libs -->
 	<source path="src" />

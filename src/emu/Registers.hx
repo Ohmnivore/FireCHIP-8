@@ -6,6 +6,8 @@ package emu;
  */
 class Registers
 {
+	private var dt:Int = 0;
+	
 	//8-bit registers
 	public var V0:Int = 0;
 	public var V1:Int = 0;
@@ -63,17 +65,24 @@ class Registers
 	
 	public function updateTimers():Void
 	{
-		DT--;
-		ST--;
+		dt += Util.getMsElapsed();
 		
-		if (DT < 0)
-			DT = 0;
-		if (ST < 0)
-			ST = 0;
-		
-		if (ST > 0)
+		if (dt >= 17)
 		{
-			//play sound
+			DT--;
+			ST--;
+			
+			if (DT < 0)
+				DT = 0;
+			if (ST < 0)
+				ST = 0;
+			
+			if (ST > 0)
+			{
+				//play sound
+			}
+			
+			dt = 0;
 		}
 	}
 	

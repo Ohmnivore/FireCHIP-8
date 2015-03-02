@@ -1,13 +1,14 @@
 package ;
 
 import emu.Chip8;
+import engine.DebugChip8;
 import engine.DebugKeys;
 import engine.DebugScreen;
 import engine.KeyboardKeys;
 import engine.Screen;
-import flash.display.Sprite;
-import flash.events.Event;
-import flash.Lib;
+import openfl.display.Sprite;
+import openfl.events.Event;
+import openfl.Lib;
 import openfl.Assets;
 import openfl.display.FPS;
 
@@ -24,6 +25,7 @@ class Main extends Sprite
 	private var debugKeys:DebugKeys;
 	private var keys:KeyboardKeys;
 	private var fps:FPS;
+	private var fpsVis:Bool;
 	
 	var inited:Bool;
 
@@ -40,7 +42,11 @@ class Main extends Sprite
 		if (inited) return;
 		inited = true;
 		
-		chip8 = new Chip8();
+		debugKeys = new DebugKeys(stage);
+		debug = new DebugScreen(this);
+		keys = new KeyboardKeys(stage);
+		
+		chip8 = new DebugChip8(debug, debugKeys, keys);
 		
 		//Games
 		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Airplane.ch8"));
@@ -82,36 +88,38 @@ class Main extends Sprite
 		
 		fps = new FPS(5, 5, 0xFFFFFF);
 		fps.x = stage.stageWidth - fps.width;
+		#if !debug
+		fpsVis = false;
+		debugKeys.doFPS = false;
+		#else
 		addChild(fps);
+		fpsVis = true;
+		debugKeys.doFPS = true;
+		#end
 		
-		debugKeys = new DebugKeys(stage);
-		debug = new DebugScreen(this);
-		keys = new KeyboardKeys(stage);
-		
-		addEventListener(Event.ENTER_FRAME, everyFrame);
+		stage.addEventListener(Event.ENTER_FRAME, everyFrame);
+	}
+	
+	private function everyFrame(D:Dynamic):Void
+	{
+		if (fpsVis != debugKeys.doFPS)
+		{
+			if (debugKeys.doFPS)
+			{
+				addChild(fps);
+				fpsVis = true;
+			}
+			else
+			{
+				removeChild(fps);
+				fpsVis = false;
+			}
+		}
 	}
 	
 	private function drawScreen():Void
 	{
 		screen.drawArray(chip8.gfx.getGfx());
-	}
-	
-	private function everyFrame(E:Event):Void
-	{
-		if (debugKeys.doRun)
-			runChip8();
-		else if (debugKeys.doNext)
-		{
-			debugKeys.consumeNext();
-			runChip8();
-		}
-	}
-	
-	private function runChip8():Void
-	{
-		keys.setKeys(chip8.keys);
-		chip8.run();
-		debug.update(chip8.cpu.curOp, chip8.cpu.reg);
 	}
 	
 	/* SETUP */

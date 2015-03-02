@@ -5,9 +5,9 @@
     <movie outputType="CustomBuild" />
     <movie input="" />
     <movie path="application.xml" />
-    <movie fps="60" />
-    <movie width="640" />
-    <movie height="480" />
+    <movie fps="30" />
+    <movie width="320" />
+    <movie height="160" />
     <movie version="1" />
     <movie minorVersion="0" />
     <movie platform="Lime" />
@@ -28,7 +28,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="True" />
-    <option additional="--no-output &#xA;-swf-version 11.2&#xA;-debug " />
+    <option additional="--no-output &#xA;-swf-version 11.2" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

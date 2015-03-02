@@ -57,7 +57,6 @@ class CPU
 			{
 				if (keys.get(reg.getRegister(regID1)) == true)
 				{
-					trace("0x9E", reg.getRegister(regID1));
 					reg.incrementPC();
 				}
 				reg.incrementPC();
@@ -66,7 +65,6 @@ class CPU
 			{
 				if (keys.get(reg.getRegister(regID1)) == false)
 				{
-					trace("0xA1", reg.getRegister(regID1));
 					reg.incrementPC();
 				}
 				reg.incrementPC();

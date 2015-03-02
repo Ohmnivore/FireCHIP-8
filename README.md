@@ -1,5 +1,4 @@
 ### [DEMO](http://fouramgames.com/swf/FireCHIP8.swf)
-* Press SPACE to start playing
 * P1 controls: 1 and Q
 * P2 controls: 4 and R
 * You'll see the screen (sorta) flickering. I'm not sure what's causing this, it's probably the delay for
@@ -19,8 +18,6 @@ you can use interface it with the engine you need.
 ## TODO:
 * Figure out why the Stars demo isn't working, and why the Division Test program isn't finishing correctly
 * Embedded program selector and load program from disk functionalities
-* Hide/show debugger
-* Correct window size
 * Test the rest of the games
 * Sound (fixed frequency tone)
 

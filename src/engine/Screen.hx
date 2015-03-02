@@ -1,5 +1,5 @@
 package engine;
-import flash.display.BitmapData;
+import openfl.display.BitmapData;
 import openfl.display.Bitmap;
 
 /**

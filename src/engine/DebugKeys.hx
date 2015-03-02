@@ -10,6 +10,7 @@ class DebugKeys
 {
 	public var doRun:Bool = false;
 	public var doNext:Bool = false;
+	public var doFPS:Bool = false;
 	
 	public function new(S:Stage)
 	{
@@ -25,6 +26,8 @@ class DebugKeys
 	{
 		if (evt.keyCode == 32) //SPACEBAR
 			doRun = !doRun;
+		else if (evt.keyCode == 38) //UP ARROW
+			doFPS = !doFPS;
 		else if (evt.keyCode == 39) //RIGHT ARROW
 			doNext = true;
 	}

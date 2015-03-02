@@ -1,5 +1,5 @@
 package emu;
-import flash.display.Stage;
+import openfl.display.Stage;
 import openfl.events.KeyboardEvent;
 
 /**

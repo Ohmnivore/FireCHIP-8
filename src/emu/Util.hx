@@ -16,4 +16,13 @@ class Util
 			i++;
 		}
 	}
+	
+	public static function getMsElapsed():Int
+	{
+		#if flash
+		return flash.Lib.getTimer();
+		#else
+		return 16;
+		#end
+	}
 }

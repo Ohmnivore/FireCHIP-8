@@ -54,6 +54,10 @@ class DebugScreen
 		Font.registerFont(Consolas);
 		s = S;
 		
+		initName("Space=play/pause");
+		initName("Right arrow=execute one CPU cycle");
+		initName("Up arrow=toggle FPS display");
+		
 		op = initField("OP", op);
 		V0 = initField("V0", V0);
 		V1 = initField("V1", V1);
@@ -81,6 +85,21 @@ class DebugScreen
 		op.textColor = 0xff0000;
 		PC.textColor = 0xff0000;
 		I.textColor = 0xff0000;
+	}
+	
+	private function initName(Name:String):Void
+	{
+		var fname:String = new Consolas().fontName;
+		
+		var n:TextField = new TextField();
+		n.defaultTextFormat = new TextFormat(fname, 14, 0xffffff);
+		n.embedFonts = true;
+		n.x = 5;
+		n.y = yoffset;
+		n.text = Name;
+		n.width = 400;
+		s.addChild(n);
+		yoffset += 14;
 	}
 	
 	private function initField(Name:String, F:TextField):TextField
