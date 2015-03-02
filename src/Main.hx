@@ -6,6 +6,7 @@ import engine.DebugKeys;
 import engine.DebugScreen;
 import engine.KeyboardKeys;
 import engine.Screen;
+import engine.Tone;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.Lib;
@@ -21,6 +22,7 @@ class Main extends Sprite
 {
 	private var screen:Screen;
 	private var chip8:Chip8;
+	private var tone:Tone;
 	private var debug:DebugScreen;
 	private var debugKeys:DebugKeys;
 	private var keys:KeyboardKeys;
@@ -50,10 +52,11 @@ class Main extends Sprite
 		
 		//Games
 		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Airplane.ch8"));
-		chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Pong [Paul Vervalin, 1990].ch8"));
+		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Pong [Paul Vervalin, 1990].ch8"));
+		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Games/Pong (alt).ch8"));
 		
 		//Non-tested or non-working demos and programs
-		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Demos/Stars [Sergey Naydenov, 2010].ch8"));
+		chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Demos/Stars [Sergey Naydenov, 2010].ch8"));
 		//chip8.loadGame(Assets.getBytes("assets/chip8/Chip-8 Programs/Division Test [Sergey Naydenov, 2010].ch8"));
 		
 		//Working demos and programs
@@ -97,11 +100,18 @@ class Main extends Sprite
 		debugKeys.doFPS = true;
 		#end
 		
+		tone = new Tone();
+		
 		stage.addEventListener(Event.ENTER_FRAME, everyFrame);
 	}
 	
 	private function everyFrame(D:Dynamic):Void
 	{
+		if (chip8.cpu.reg.ST > 0)
+			tone.doPlay();
+		else
+			tone.doStop();
+		
 		if (fpsVis != debugKeys.doFPS)
 		{
 			if (debugKeys.doFPS)

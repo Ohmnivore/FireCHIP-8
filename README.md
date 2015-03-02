@@ -19,7 +19,6 @@ you can use interface it with the engine you need.
 * Figure out why the Stars demo isn't working, and why the Division Test program isn't finishing correctly
 * Embedded program selector and load program from disk functionalities
 * Test the rest of the games
-* Sound (fixed frequency tone)
 
 ## References used:
 * http://devernay.free.fr/hacks/chip8/C8TECH10.HTM

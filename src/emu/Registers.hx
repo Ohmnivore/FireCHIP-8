@@ -77,11 +77,6 @@ class Registers
 			if (ST < 0)
 				ST = 0;
 			
-			if (ST > 0)
-			{
-				//play sound
-			}
-			
 			dt = 0;
 		}
 	}
